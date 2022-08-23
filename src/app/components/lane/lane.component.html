@@ -1,0 +1,4 @@
+<div class="list col mx-1 my-3" *ngFor="let item of taskLanes">
+    <h2 class="list-title">{{item.title}}</h2>
+        <app-task [taskList]="laneTaskList" [taskLane]="item" (deleteEvent)="deleteTask($event)" (updateEvent)="updateTask($event)" ></app-task>
+</div>

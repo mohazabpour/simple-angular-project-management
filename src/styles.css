@@ -1,1 +1,118 @@
-/* You can add global styles to this file, and also import other style files */
+/**  Basic Page CSS **/
+body {
+    font-weight: 200;
+    background-color: #337ab7;
+  }
+  
+  header a,
+  footer a {
+    color: white;
+  }
+  
+  footer {
+    font-size: 0.8em;
+  }
+
+  .bg-primary,
+  .btn-primary {
+    background-color: #377bb5 !important;
+    border: inherit;
+  }
+  
+  .add-task .card-body {
+    display: none;
+  }
+  
+  .task-addheading {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .task-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: start;
+    padding: 0 0.6rem 0.5rem;
+    overflow-y: auto;
+
+  }
+  
+  .task-list .task-item {
+    font-weight: 400;
+    line-height: 1.3;
+    background-color: #fff;
+    padding: 0.65rem 0.6rem;
+    color: #4d4d4d;
+    border-bottom: 0.1rem solid #ccc;
+    border-radius: 0.3rem;
+    margin-bottom: 0.6rem;
+    word-wrap: break-word;
+  }
+  .lists-container {
+    display: flex;
+    align-items: start;
+    padding: 0 0.8rem 0.8rem;
+    overflow-x: auto;
+    height: calc(100vh - 8.6rem);
+}
+  .list{
+    flex: 0 0 27rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e4e6;
+    border-radius: 0.3rem;
+    margin-right: 1rem;
+    min-height: 50vh;
+    
+}
+
+.list-title{
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
+    padding: 1rem;
+}
+  
+  .task-list .task-title {
+    font-weight: 700;
+    color: #337ab7;
+    font-size: 1.1em;
+    line-height: 120%;
+
+  }
+  
+  .task-list .label-item {
+    font-weight: 600;
+    color: #667b82;
+  }
+  
+  
+  .task-list .task-desc {
+    line-height: 120%;
+  }
+  .task-list .task-delete {
+    font-size: 0.8rem;
+  }
+  
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background-color: #a9aeb2;
+  }
+
+  .error{
+    color: red;
+  }
+.is-task .task-trash{
+  visibility: hidden;
+}
+  .is-task-hovering .task-trash {
+    visibility: visible;
+  }
+
+  .grab {
+    cursor:grab;
+  }
+  .grabbing {
+    cursor: grabbing;
+  }

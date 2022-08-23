@@ -1,0 +1,29 @@
+<div class="task-list item-list mb-3 p-2"
+>
+    <div class="task-item col d-flex py-3"
+    *ngFor="let item of taskList | taskfilter:taskLane" 
+    taskDelete
+    >
+      
+    <div  class="flex-shrink-0 me-2 ">
+            <fa-icon taskGrab [icon]="faGripVertical"></fa-icon>
+      </div><!-- media-left -->
+      <div class="task-info flex-grow-1">
+        <div class="task-head d-flex ">
+          <span class="task-title mb-1" contenteditable="true" #taskTitle (blur)="handleUpdate(item, 'title', taskTitle.innerText)">
+            {{item.title}}
+            </span>
+        </div><!-- task-head -->
+  
+        <div class="task-desc" contenteditable="true" #taskDesc (blur)="handleUpdate(item, 'body', taskDesc.innerText)" >
+            {{item.body}}
+        </div>
+        <div class="mt-2 ms-auto d-flex flex-row-reverse task-trash">
+            <button class="task-delete btn btn-sm btn-danger bg-box-hidden"
+            (click)="handleDelete(item)">
+                <fa-icon [icon]="faTrashCan"></fa-icon>
+            </button>
+          </div><!-- media-left -->
+      </div><!-- task-info -->
+    </div><!-- task-item -->
+  </div><!-- task-list -->
