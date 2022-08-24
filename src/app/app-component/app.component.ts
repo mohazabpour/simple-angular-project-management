@@ -37,20 +37,14 @@ export class AppComponent implements OnInit {
     //Draggable
       onDragStart(event:any) {
         this.theTask = event;
-        console.log("drag started", JSON.stringify(event, null, 2));
       }
 
     //Dropzone
       onDragover(event:DragEvent) {
-
-        console.log("dragover", JSON.stringify(event, null, 2));
       }
       
       onDrop(event: any) {
-      let taskIndex: number;
-      taskIndex = findIndex(this.theList, { id: this.theTask.id });
       this.theTask.lane = event.id;
-        console.log("dropped", JSON.stringify(event, null, 2));
       }
 
   constructor(private http: HttpClient ) {}

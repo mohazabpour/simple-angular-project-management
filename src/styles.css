@@ -49,30 +49,19 @@ body {
     margin-bottom: 0.6rem;
     word-wrap: break-word;
   }
-  .lists-container {
-    display: flex;
-    align-items:flex-start;
-    padding: 0 0.8rem 0.8rem;
-    overflow-x: auto;
-    height: calc(100vh - 8.6rem);
-}
+
   .list{
-    flex: 0 0 27rem;
-    display: flex;
-    flex-direction: column;
     background-color: #e2e4e6;
     border-radius: 0.3rem;
-    margin-right: 1rem;
     min-height: 50vh;
-    
-}
+  }
 
-.list-title{
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #333;
-    padding: 1rem;
-}
+  .list-title{
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #333;
+      padding: 1rem;
+  }
   
   .task-list .task-title {
     font-weight: 700;
