@@ -8,7 +8,7 @@ import { Directive, HostBinding, Input, HostListener } from "@angular/core";
 export class TaskGrabDirective{
     @HostBinding('class.grab') isHandle = true;
     @HostBinding('class.grabbing') grabbing = false;
-    @HostListener('mousedown') onMousedown(){
+    @HostListener('mousedown') onMouseDown(){
         this.grabbing = true;
     }
     @HostListener('mouseup') onMouseup(){

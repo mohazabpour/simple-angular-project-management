@@ -32,7 +32,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-content: start;
+    align-content:flex-start;
     padding: 0 0.6rem 0.5rem;
     overflow-y: auto;
 
@@ -51,7 +51,7 @@ body {
   }
   .lists-container {
     display: flex;
-    align-items: start;
+    align-items:flex-start;
     padding: 0 0.8rem 0.8rem;
     overflow-x: auto;
     height: calc(100vh - 8.6rem);
@@ -116,3 +116,16 @@ body {
   .grabbing {
     cursor: grabbing;
   }
+
+  .dndDragover {
+    outline: 2px dashed #bbb;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    transition: transform 250ms;
+    }
+    
+    .draggable {
+      border: 1px dashed black;
+      margin-bottom: 5px;
+      transition: transform 250ms;
+    }

@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { without, findIndex } from 'lodash';
+import { Component, Input,Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
+
+import { DndDropEvent } from 'ngx-drag-drop';
 @Component({
   selector: 'app-lane',
   templateUrl: './lane.component.html',
@@ -8,18 +9,40 @@ import { without, findIndex } from 'lodash';
 export class LaneComponent implements OnChanges  {
   @Input() taskLanes: any = [];
   @Input() laneTaskList: any = [];
+  @Output() deleteEvent = new EventEmitter();
+  @Output() updateEvent = new EventEmitter();
+  @Output() DragEvent = new EventEmitter();
+  @Output() DndDropEvent = new EventEmitter();
+  @Output() DragStart = new EventEmitter();
+
+
   constructor() {}
-  deleteTask(theTask: object){
-    this.laneTaskList = without(this.laneTaskList, theTask);
+  handleDelete(theTask: object){
+    this.deleteEvent.emit(theTask);
   }
-  updateTask(taskInfo: any = {}){
-    let taskIndex: number;
-    taskIndex = findIndex(this.laneTaskList, { id: taskInfo.theTask.id });
-    this.laneTaskList[taskIndex][taskInfo.labelName] = taskInfo.newValue;
+
+  handleUpdate(taskInfo: any = {}){
+    this.updateEvent.emit(taskInfo);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.laneTaskList);
+    // console.log(this.laneTaskList);
+  }
+
+  //DnD Dropzone
+  handleDragover(event:DragEvent) {
+    this.DragEvent.emit(event);
   }
   
+  handleDrop(event:DndDropEvent) {
+  
+    this.DndDropEvent.emit(event);
+  }
+
+  //DnD Draggable
+  handleDragStart(event:DragEvent) {
+    this.DragStart.emit(event);
+  }
+  
+
 }

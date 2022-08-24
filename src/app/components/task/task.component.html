@@ -1,12 +1,15 @@
-<div class="task-list item-list mb-3 p-2"
->
+<div class="task-list item-list mb-3 p-2">
     <div class="task-item col d-flex py-3"
     *ngFor="let item of taskList | taskfilter:taskLane" 
     taskDelete
+    [dndDraggable]="draggable.data"
+    [dndEffectAllowed]="draggable.effectAllowed"
+    [dndDisableIf]="draggable.disable"
+    (dndStart)="handleDragStart(item)"
     >
       
     <div  class="flex-shrink-0 me-2 ">
-            <fa-icon taskGrab [icon]="faGripVertical"></fa-icon>
+            <fa-icon taskGrab [icon]="faGripVertical" *ngIf="draggable.handle" dndHandle></fa-icon>
       </div><!-- media-left -->
       <div class="task-info flex-grow-1">
         <div class="task-head d-flex ">

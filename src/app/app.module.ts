@@ -23,7 +23,7 @@ import { TaskFilterPipe } from './components/task/task-filter.pipe';
     TaskComponent,
     TaskFilterPipe,
     TaskDeleteDirective,
-    TaskGrabDirective
+    TaskGrabDirective,
   ],
   imports: [
     BrowserModule,

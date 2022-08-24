@@ -6,7 +6,16 @@
         <div class="container">
           <h2 class="py-3">{{title}}</h2>
           <app-add (addEvt)="addTask($event)"></app-add>
-          <app-lane [taskLanes]="Lanes" [laneTaskList]="theList" class="col col-lg-12  d-flex"></app-lane>
+          <app-lane 
+          [taskLanes]="Lanes"
+          [laneTaskList]="theList" 
+          (deleteEvent)="deleteTask($event)"
+          (updateEvent)="updateTask($event)"
+          (DragEvent)="onDragover($event)"
+          (DndDropEvent)="onDrop($event)"
+          (DragStart)="onDragStart($event)"
+          class="col col-lg-12  d-flex"
+          ></app-lane>
           <!-- <app-list [taskList]="theList" (deleteEvent)="deleteTask($event)" (updateEvent)="updateTask($event)" ></app-list> -->
         </div>
 

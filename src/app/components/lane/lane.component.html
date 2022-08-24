@@ -1,4 +1,13 @@
-<div class="list col mx-1 my-3" *ngFor="let item of taskLanes">
+<div class="list col mx-1 my-3" *ngFor="let item of taskLanes" 
+dndDropzone
+(dndDragover)="handleDragover(item)"
+(dndDrop)="handleDrop(item)"
+>
     <h2 class="list-title">{{item.title}}</h2>
-        <app-task [taskList]="laneTaskList" [taskLane]="item" (deleteEvent)="deleteTask($event)" (updateEvent)="updateTask($event)" ></app-task>
+        <app-task [taskList]="laneTaskList" [taskLane]="item"
+        (deleteEvent)="handleDelete($event)"
+        (updateEvent)="handleUpdate($event)"
+        (DragStart)="handleDragStart($event)"
+        
+        ></app-task>
 </div>
