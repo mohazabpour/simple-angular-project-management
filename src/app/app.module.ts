@@ -7,7 +7,6 @@ import { DndModule } from 'ngx-drag-drop';
 
 import { AppComponent } from './app-component/app.component';
 import { AddComponent } from './components/add/add.component';
-import { ListComponent } from './components/list/list.component';
 import { LaneComponent } from './components/lane/lane.component';
 import { TaskComponent } from './components/task/task.component';
 
@@ -32,7 +31,6 @@ const lanesList: Array<any> = [
   declarations: [
     AppComponent,
     AddComponent,
-    ListComponent,
     LaneComponent,
     TaskComponent,
     TaskFilterPipe,

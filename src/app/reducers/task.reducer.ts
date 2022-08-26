@@ -32,7 +32,6 @@ const taskListReducer: any = createReducer(
       error: null,
     };
   }),
-  on(taskActions.LoadListFailure, (state, { error }) => ({ ...state, error })),
   on(taskActions.RemoveTask, (state) => ({
     ...state,
     loaded: false,
