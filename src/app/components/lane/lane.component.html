@@ -1,7 +1,6 @@
-<div class="d-inline-flex col-md-4 col-sm-12" *ngFor="let item of taskLanes">
+<div class="d-inline-flex col-md-4 col-sm-12" *ngFor="let item of lanesList">
     <div class="list my-3 mx-1 flex-fill" 
     dndDropzone
-    (dndDragover)="handleDragover(item)"
     (dndDrop)="handleDrop(item)">
         <h2 class="list-title">{{item.title}}</h2>
             <app-task [taskList]="laneTaskList" [taskLane]="item"

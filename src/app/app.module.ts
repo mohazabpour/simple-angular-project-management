@@ -14,6 +14,20 @@ import { TaskComponent } from './components/task/task.component';
 import { TaskDeleteDirective } from './components/task/task-delete.directive';
 import { TaskGrabDirective } from './components/task/task-grab.directive';
 import { TaskFilterPipe } from './components/task/task-filter.pipe';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducer } from './reducers/task.reducer';
+import { TaskFacade } from './task.facade';
+
+import { taskEffects } from './effects/task.effects';
+import { LIST_FEATURE_KEY } from './taskList.state';
+
+const lanesList: Array<any> = [
+  { id: 1, title: 'To Do' },
+  { id: 2, title: 'Implementing' },
+  { id: 3, title: 'Done' },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +44,12 @@ import { TaskFilterPipe } from './components/task/task-filter.pipe';
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    DndModule
+    DndModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(LIST_FEATURE_KEY, reducer),
+    EffectsModule.forRoot([taskEffects]),
   ],
-  providers: [],
+  providers: [TaskFacade, {provide: 'lanesToken', useValue: lanesList}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

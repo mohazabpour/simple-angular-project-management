@@ -8,11 +8,9 @@
           <app-add (addEvt)="addTask($event)"></app-add>
           <div class="row flex-row flex-wrap">
             <app-lane 
-            [taskLanes]="Lanes"
             [laneTaskList]="theList" 
             (deleteEvent)="deleteTask($event)"
             (updateEvent)="updateTask($event)"
-            (DragEvent)="onDragover($event)"
             (DndDropEvent)="onDrop($event)"
             (DragStart)="onDragStart($event)"
             ></app-lane>

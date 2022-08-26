@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { DndDropEvent } from 'ngx-drag-drop';
-import { without, findIndex } from 'lodash';
-import { identifierName } from '@angular/compiler';
+import { filter, switchMap } from 'rxjs/operators';
+
+import { TaskFacade } from '../task.facade';
 
 
 @Component({
@@ -11,47 +10,39 @@ import { identifierName } from '@angular/compiler';
 })
 export class AppComponent implements OnInit {
   title = 'Angular Project Management Board';
-  theList: any;
-  Lanes :  object = [
-    { id: 1, title: 'To Do' },
-    { id: 2, title: 'Implementing' },
-    { id: 3, title: 'Done' },
-  ];
-  theTask: any;
+  theList: object[];
   
   addTask(theTask: object){
-    this.theList.unshift(theTask);
+   this.taskFacade.addTask(theTask);
   }
 
   deleteTask(theTask: object){
-    this.theList = without(this.theList, theTask);
+    this.taskFacade.removeTask(theTask);
   }
 
   updateTask(taskInfo: any = {}){
-    let taskIndex: number;
-    taskIndex = findIndex(this.theList, { id: taskInfo.theTask.id });
-    this.theList[taskIndex][taskInfo.labelName] = taskInfo.newValue;
+    this.taskFacade.editTask(taskInfo);
   }
 
-  //DnD
-    //Draggable
-      onDragStart(event:any) {
-        this.theTask = event;
-      }
+  onDragStart(event:any) {
+    this.taskFacade.dragStartTask(event);
+    }
+  onDrop(event: any) {
+  this.taskFacade.dropTask(event);
+    }
 
-    //Dropzone
-      onDragover(event:DragEvent) {
-      }
-      
-      onDrop(event: any) {
-      this.theTask.lane = event.id;
-      }
-
-  constructor(private http: HttpClient ) {}
+  constructor(private taskFacade: TaskFacade ) {}
 
   ngOnInit(): void {
-    this.http.get<Object[]>('../assets/data.json').subscribe(data => {
-      this.theList = data;
-    });
+    this.taskFacade.loadList();
+    this.taskFacade.loaded$
+      .pipe(
+        filter((isLoaded: boolean) => isLoaded === true),
+        switchMap(() => this.taskFacade.List$)
+      )
+      .subscribe((task: any) => {
+        this.theList = task;
+      });
   }
+
 }

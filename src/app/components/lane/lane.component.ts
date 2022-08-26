@@ -1,22 +1,19 @@
-import { Component, Input,Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
-
+import { Component, Input,Output, EventEmitter, Inject } from '@angular/core';
 import { DndDropEvent } from 'ngx-drag-drop';
 @Component({
   selector: 'app-lane',
   templateUrl: './lane.component.html',
   styleUrls: ['./lane.component.css']
 })
-export class LaneComponent implements OnChanges  {
-  @Input() taskLanes: any = [];
+export class LaneComponent {
   @Input() laneTaskList: any = [];
   @Output() deleteEvent = new EventEmitter();
   @Output() updateEvent = new EventEmitter();
-  @Output() DragEvent = new EventEmitter();
   @Output() DndDropEvent = new EventEmitter();
   @Output() DragStart = new EventEmitter();
 
 
-  constructor() {}
+  constructor(@Inject('lanesToken') public lanesList: any) {}
   handleDelete(theTask: object){
     this.deleteEvent.emit(theTask);
   }
@@ -25,17 +22,9 @@ export class LaneComponent implements OnChanges  {
     this.updateEvent.emit(taskInfo);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // console.log(this.laneTaskList);
-  }
-
   //DnD Dropzone
-  handleDragover(event:DragEvent) {
-    this.DragEvent.emit(event);
-  }
   
   handleDrop(event:DndDropEvent) {
-  
     this.DndDropEvent.emit(event);
   }
 
