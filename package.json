@@ -22,7 +22,6 @@
     "@ngrx/effects": "^14.2.0",
     "@ngrx/store": "^14.2.0",
     "@ngrx/store-devtools": "^14.2.0",
-    "lodash": "^4.17.21",
     "ngx-drag-drop": "^13.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

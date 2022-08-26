@@ -1,6 +1,5 @@
 import { taskState, initialListState } from '../taskList.state';
 import * as taskActions from '../actions/task.actions';
-import { without, findIndex } from 'lodash';
 import { Action, createReducer, on } from '@ngrx/store';
 
 const taskListReducer: any = createReducer(
@@ -40,8 +39,10 @@ const taskListReducer: any = createReducer(
     error: null,
   })),
   on(taskActions.RemoveTaskSuccess, (state, { data }) => {
+    let taskIndex: number;
     let list = [...state.taskList];
-    list = without(list, data);
+    taskIndex = list.indexOf(data);
+    (( taskIndex >=0 ) && list.splice(taskIndex,1));
     return {
       ...state,
       taskList: list,
@@ -56,9 +57,10 @@ const taskListReducer: any = createReducer(
   })),
   on(taskActions.EditTaskSuccess, (state, { data }) => {
     let taskIndex: number;
-    let list = JSON.parse(JSON.stringify(state.taskList));
-    taskIndex = findIndex(list, { id: data.theTask.id });
-    list[taskIndex][data.labelName] = data.newValue;
+    let mutablelist = JSON.parse(JSON.stringify(state.taskList));
+    let list = [...state.taskList];
+    taskIndex = list.indexOf(data.theTask);
+    mutablelist[taskIndex][data.labelName] = data.newValue;
     return {
       ...state,
       taskList: list,
@@ -90,13 +92,16 @@ const taskListReducer: any = createReducer(
   }}),
   on(taskActions.DropTaskSuccess, (state, { data }) => {
     let taskIndex: number;
-    let list = JSON.parse(JSON.stringify(state.taskList));
-    let task = JSON.parse(JSON.stringify(state.task));
-    taskIndex = findIndex(list, { id: task.id });
-    list[taskIndex].lane = data.data.id;
+    let list = [...state.taskList];
+    let task = state.task ;
+    let mutablelist = JSON.parse(JSON.stringify(state.taskList));
+    taskIndex = list.indexOf(task);
+    if( taskIndex >=0 ){
+      mutablelist[taskIndex].lane = data.data.id;
+    };
     return {
       ...state,
-      taskList: list,
+      taskList: mutablelist,
       loaded: true,
       error: null,
     };

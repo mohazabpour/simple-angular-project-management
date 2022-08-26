@@ -2,7 +2,6 @@ import { TaskActionsNames } from "../actions/task.actions";
 import * as taskActions from "../actions/task.actions";
 import List from '../../assets/data.json';
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -12,7 +11,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 export class taskEffects {
   constructor(
     private readonly actions$: Actions,
-    private readonly http: HttpClient
   ) {}
   public readonly loadList$: Observable<any> = createEffect(() => {
     return this.actions$.pipe(
